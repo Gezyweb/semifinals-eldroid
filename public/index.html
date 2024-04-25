@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="stylesheet" href="assets/css/w3.css">
+		<script src="assets/js/angular.min.js"></script>
+	</head>
+	<body ng-app="app">
+		<div class="w3-bar w3-pink w3-container w3-padding">
+			<h3>IT ELDRIOD SEMIS</h3>
+			<h3>GEZYWEB IBJONG</h3>
+		</div>
+		<div ng-controller="ctrl" class="w3-container w3-padding">
+			<input type="text" placeholder="search..." ng-model="search">
+			<table class="w3-table-all">
+				<tr ng-repeat="student in students | orderBy:'lastname' | filter:search">
+					<td>{{ student['id'] }}</td>
+					<td>{{ student['idno'] }}</td>
+					<td>{{ student['lastname'] | uppercase}}</td>
+					<td>{{ student['firstname'] | uppercase}}</td>
+					<td>{{ student['course'] | uppercase}}</td>
+					<td>{{ student['level'] }}</td>
+				</tr>
+			</table>
+		</div>
+		<script src="assets/js/myapp.js"></script>
+	</body>
+</html>

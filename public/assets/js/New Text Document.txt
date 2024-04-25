@@ -1,0 +1,9 @@
+var app = angular.module("app",[]);
+			app.controller("ctrl",function($scope,$http){
+				$http({
+					url:'http://localhost:4321/api/students',
+					method:'GET'
+				}).then(function(response){
+					$scope.students = response.data;
+				});
+});

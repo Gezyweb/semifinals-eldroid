@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/w3.css">
+  <style>
+    .form-container {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="w3-bar w3-pink w3-container w3-padding">
+    <h3>IT ELDROID SEMIS</h3>
+    <h3>GEZYWEB IBJONG</h3>
+  </div>
+  <div class="w3-container w3-padding">
+    <p class="w3-large w3-center">Login</p>
+    <div class="form-container">
+      <form id="loginForm">
+        <div class="w3-section">
+          <label>Username:</label>
+          <input type="text" id="username" class="w3-input" required>
+        </div>
+        <div class="w3-section">
+          <label>Password:</label>
+          <input type="password" id="password" class="w3-input" required>
+        </div>
+        <button type="button" onclick="login()" class="w3-button w3-block w3-padding w3-teal">Login</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/api/login", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            window.location.href = "/"; // Redirect to homepage on successful login
+          } else {
+            alert("Invalid username or password"); // Display error message in an alert
+          }
+        }
+      };
+      xhr.send(JSON.stringify({ username: username, password: password }));
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission behavior
+      login(); // Call the login function when the form is submitted
+    });
+  </script>
+</body>
+</html>

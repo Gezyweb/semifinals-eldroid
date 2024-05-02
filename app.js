@@ -15,6 +15,7 @@ const port = process.env.PORT || 4321;
 // Import route handlers
 const students = require("./api/students");
 const login = require("./api/login");
+const register = require("./api/register"); // Add registration route handler
 
 // Middleware
 app.use(express.static(path.join(__dirname, "/public")));
@@ -23,9 +24,8 @@ app.use(express.json());
 
 // Routes
 app.use("/api/students", students);
-
-// Route handler for login POST requests
 app.use("/api/login", login);
+app.use("/api/register", register); // Use registration route handler
 
 // Default route
 app.get("/", (req, res) => {
@@ -35,6 +35,11 @@ app.get("/", (req, res) => {
 // Login route
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
+});
+
+// Register route
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "register.html"));
 });
 
 // Start the server

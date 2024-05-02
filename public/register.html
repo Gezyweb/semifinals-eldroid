@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/w3.css">
+  <style>
+    .form-container {
+      padding: 20px;
+      border: 1px solid #bbf78a;
+      border-radius: 5px;
+      background-color: #e3facd;
+    }
+  </style>
+</head>
+<body>
+  <div class="w3-bar w3-green w3-container w3-padding">
+    <h3 style="text-align: center;">IT ELDROID SEMIS&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;GEZYWEB IBJONG</h3>
+  </div>
+  <div class="w3-container w3-padding">
+    <p class="w3-xlarge w3-center w3-text-green">Register</p>
+    <div class="form-container">
+      <form id="registerForm">
+        <div class="w3-section">
+          <br>
+          <label>Username:</label>
+          <input type="text" id="username" class="w3-input" required>
+        </div>
+        <div class="w3-section">
+          <br>
+          <label>Password:</label>
+          <input type="password" id="password" class="w3-input" required>
+        </div>
+        <div class="w3-section">
+          <br>
+          <label>Confirm Password:</label>
+          <input type="password" id="confirmPassword" class="w3-input" required>
+        </div>
+        <br>
+        <button type="button" onclick="register()" class="w3-button w3-block w3-padding w3-teal">Register</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    function register() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/api/register", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            alert("Registration successful"); // Display success message in an alert
+            window.location.href = "/login"; // Redirect to homepage on successful registration
+          } else {
+            alert("Registration failed"); // Display error message in an alert
+          }
+        }
+      };
+      xhr.send(JSON.stringify({ username: username, password: password }));
+    }
+  </script>
+</body>
+</html>

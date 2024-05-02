@@ -15,7 +15,7 @@
 		<div ng-controller="ctrl" class="w3-container w3-padding">
 			<input type="text" placeholder="search..." ng-model="search">
 			<table class="w3-table-all">
-				<tr ng-repeat="student in students | orderBy:'lastname' | filter:search">
+				<tr ng-repeat="student in students | orderBy:'id' | filter:search">
 					<td>{{ student['id'] }}</td>
 					<td>{{ student['idno'] }}</td>
 					<td>{{ student['lastname'] | uppercase}}</td>
